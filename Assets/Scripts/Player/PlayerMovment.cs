@@ -5,7 +5,7 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private Transform[] m_transforms;
     [SerializeField] private InputPlayerManagerCustom m_inputPlayerManager;
 
-    private int m_currentIndex = 2;
+    private int m_currentIndex = 0;
     private int m_moveSpeed = 1;
 
 
@@ -23,7 +23,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void Start()
     {
-        m_currentIndex = 2;
+        m_currentIndex = 0;
         transform.position = m_transforms[m_currentIndex].position;
     }
 
