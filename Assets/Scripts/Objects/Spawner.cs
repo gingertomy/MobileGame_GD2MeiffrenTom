@@ -18,13 +18,18 @@ public class Spawner : MonoBehaviour
         _timeManager.OnTimePassed -= TimeGestion;
     }
 
+    private int random()
+    {
+        return Random.Range(0, _fallingLines.Length);
+    }
+
     private void TimeGestion()
     {
         _spawnTimer++;
         if (_spawnTimer >= _spawnInterval)
         {
             _spawnTimer = 0;
-            _fallingLines[0].Init(_objectToSpawn);
+            _fallingLines[random()].Init(Instantiate(_objectToSpawn));
         }
     }
 }

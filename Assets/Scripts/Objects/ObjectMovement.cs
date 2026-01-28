@@ -26,7 +26,7 @@ public class ObjectMovement : MonoBehaviour
 
     private void MoveObject()
     {
-        if (_ObjectFalling != null)
+        if (_ObjectFalling == null)
         {
             return;
         }
@@ -37,7 +37,7 @@ public class ObjectMovement : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            DestroyImmediate(_ObjectFalling,true);
             _index = -1;
         }
 
