@@ -7,7 +7,9 @@ public class ObjectMovement : MonoBehaviour
     private int _index = -1;
     [SerializeField] private TimeManager _timeManager;
     [SerializeField] private GameObject _ObjectFalling;
-
+    [SerializeField] private AudioEventDispatcher _audioEventDispatcher;
+    [SerializeField] private AudioType _ObjectMovementAudioType;
+    [SerializeField] private AudioType _ObjectDestructionAudioType;
     public void Init(GameObject NewObject)
     {
         _ObjectFalling = NewObject;
@@ -28,16 +30,24 @@ public class ObjectMovement : MonoBehaviour
     {
         if (_ObjectFalling == null)
         {
+            Debug.LogWarning("Object is null, cannot move");
             return;
         }
+        Debug.LogWarning($"Object moved to position {_index + 1}");
         _index++;
         if (_index < _transforms.Length)
         {
+           
             _ObjectFalling.transform.position = _transforms[_index].position;
+            _audioEventDispatcher.PlayAudio(_ObjectMovementAudioType);
         }
         else
         {
-            DestroyImmediate(_ObjectFalling,true);
+           
+                Destroy(_ObjectFalling);
+           
+            Debug.LogWarning("Object Destroyed");
+            _audioEventDispatcher.PlayAudio(_ObjectDestructionAudioType);
             _index = -1;
         }
 

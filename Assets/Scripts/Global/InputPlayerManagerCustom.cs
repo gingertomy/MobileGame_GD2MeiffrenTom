@@ -1,5 +1,10 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+
 
 public class InputPlayerManagerCustom : MonoBehaviour
 {
@@ -12,60 +17,120 @@ public class InputPlayerManagerCustom : MonoBehaviour
     private float width = 0.0f;
     private float height = 0.0f;
 
+    private Vector2 startPosition;
+    private Vector2 endPosition;
+
+    
+
 
     private void Start()
     {
         width = Screen.width;
         height = Screen.height;
+
+        
+
+
     }
 
-    private void Update()
+    //public void OnTap()
+    //{
+    //    Debug.Log("TAP");
+    //}
+
+    private void OnSwipe()
     {
-        if (Input.touchCount > 0)
+        Vector2 delta = endPosition - startPosition;
+        delta = delta.normalized;
+        float dot = Vector2.Dot(delta, Vector2.right); 
+
+        if (Mathf.Abs(dot) > 0.7f)
         {
-            Touch firstTouch = Input.GetTouch(0);
-
-            if (firstTouch.phase == TouchPhase.Began)
+            if (dot < 0)
             {
-                _isTouching = true;
+                MoveLeft();
             }
-            else if (firstTouch.phase == TouchPhase.Ended)
-            {
-                _isTouching = false;
-                if (_tapTimer <= _tapDuration)
-                {
-                    Debug.LogWarning($"Tap detected, Touch at {firstTouch.position}");
-
-                    if (firstTouch.position.x < width / 2)
-                    {
-                        Debug.LogWarning("Tap Right");
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Tap Left");
-                    }
-                    _tapTimer = 0.0f;
-
-                }
-
-            }
-            if (_isTouching)
-            {
-                _tapTimer += Time.deltaTime;
-            }
-
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            else
             {
                 MoveRight();
             }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                MoveLeft();
-
-            }
         }
+    }
+
+
+
+
+    private void Update()
+    {
+        if(Touch.activeTouches.Count == 0)
+        {
+            return;
+        }
+        var touch = Touch.activeTouches[0];
+
+        if (touch.phase == TouchPhase.Began)
+        {
+            startPosition = touch.screenPosition;
+
+        }
+        if(touch.phase == TouchPhase.Ended)
+        {
+            endPosition = touch.screenPosition;
+            OnSwipe();
+
+          
+        }
+
+   
+
+        
+
+
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch firstTouch = Input.GetTouch(0);
+
+        //    if (firstTouch.phase == TouchPhase.Began)
+        //    {
+        //        _isTouching = true;
+        //    }
+        //    else if (firstTouch.phase == TouchPhase.Ended)
+        //    {
+        //        _isTouching = false;
+        //        if (_tapTimer <= _tapDuration)
+        //        {
+        //            Debug.LogWarning($"Tap detected, Touch at {firstTouch.position}");
+
+        //            if (firstTouch.position.x < width / 2)
+        //            {
+        //                Debug.LogWarning("Tap Right");
+        //            }
+        //            else
+        //            {
+        //                Debug.LogWarning("Tap Left");
+        //            }
+        //            _tapTimer = 0.0f;
+
+        //        }
+
+        //    }
+        //    if (_isTouching)
+        //    {
+        //        _tapTimer += Time.deltaTime;
+        //    }
+
+
+        //    if (Input.GetKeyDown(KeyCode.RightArrow))
+        //    {
+        //        MoveRight();
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //    {
+        //        MoveLeft();
+
+        //    }
+        //}
     }
     public void MoveLeft()
     {
