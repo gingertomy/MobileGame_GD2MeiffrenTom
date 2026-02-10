@@ -39,7 +39,7 @@ public class ObjectMovement : MonoBehaviour
         {
            
             _ObjectFalling.transform.position = _transforms[_index].position;
-            _audioEventDispatcher.PlayAudio(_ObjectMovementAudioType);
+            //_audioEventDispatcher.PlayAudio(_ObjectMovementAudioType);
         }
         else
         {
@@ -47,7 +47,7 @@ public class ObjectMovement : MonoBehaviour
                 Destroy(_ObjectFalling);
            
             Debug.LogWarning("Object Destroyed");
-            _audioEventDispatcher.PlayAudio(_ObjectDestructionAudioType);
+            //_audioEventDispatcher.PlayAudio(_ObjectDestructionAudioType);
             _index = -1;
         }
 

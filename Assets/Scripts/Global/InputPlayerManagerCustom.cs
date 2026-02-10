@@ -140,5 +140,6 @@ public class InputPlayerManagerCustom : MonoBehaviour
     public void MoveRight()
     {
         OnMoveRight?.Invoke();
+        
     }
 }

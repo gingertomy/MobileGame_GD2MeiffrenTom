@@ -12,7 +12,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void OnDisable()
     {
-        audioEventDispatcher.OnAudioEvent += PlayAudioFX;
+        audioEventDispatcher.OnAudioEvent -= PlayAudioFX;
     }
 
 
