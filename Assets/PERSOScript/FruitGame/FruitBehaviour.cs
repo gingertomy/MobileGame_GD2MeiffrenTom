@@ -5,6 +5,7 @@ public class FruitBehavior : MonoBehaviour
     private Transform[] _path; 
     private int _currentIndex = 0;
     private TimeManagment _timeManager;
+    
 
     
     public void Setup(Transform[] points, TimeManagment manager)

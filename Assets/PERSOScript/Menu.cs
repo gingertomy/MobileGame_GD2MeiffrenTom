@@ -1,0 +1,44 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Menu : MonoBehaviour
+{
+    public void LoadNewLevel(int buildIndex)
+    {
+        SceneManager.LoadScene(buildIndex);
+
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    public void LoadMainMenu()
+    {
+        LoadNewLevel(0);
+
+    }
+
+    public void LoadLevel1()
+    {
+        LoadNewLevel(1);
+
+    }
+    public void LoadLevel2()
+    {
+        LoadNewLevel(2);
+
+
+    }
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+    }
+
+}

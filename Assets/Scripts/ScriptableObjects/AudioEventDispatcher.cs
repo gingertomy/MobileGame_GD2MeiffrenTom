@@ -4,11 +4,16 @@ using UnityEngine;
 public enum AudioType
 {
     None,
-    ObjectMovement,
+    TrashPickup,
     PlayerMovement,
-    Destruction,
-    Death,
-    Win
+    PowerUp,
+    Negative,
+    GameOver,
+    LifeLoose,
+    Acceleration,
+    Click
+
+    
 }
 
 [Serializable]
@@ -39,4 +44,5 @@ public class AudioEventDispatcher : ScriptableObject
         }
       
     }
+
 }

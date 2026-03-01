@@ -42,7 +42,7 @@ public class PlayerMovment : MonoBehaviour
         UpdatePosition();
     }
 
-    public void MoveToDirection(int direction) //direction = -1 OU 1
+    public void MoveToDirection(int direction) 
     {
         m_currentIndex = m_currentIndex + m_moveSpeed*direction;
         m_currentIndex = Mathf.Clamp(m_currentIndex, 0, m_transforms.Length-1);

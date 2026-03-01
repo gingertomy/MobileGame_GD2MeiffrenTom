@@ -10,6 +10,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Sprite _leftSprite;
     [SerializeField] private Sprite _rightSprite;
     [SerializeField] private Animator _playerAnimator;
+    [SerializeField] private Animator _trashAnimator;
+
+    [SerializeField] private AudioEventDispatcher _audioEventDispatcher;
+    [SerializeField] private AudioType _moveAudioType;
+    [SerializeField] private AudioType _getTrashAudioType;
+    [SerializeField] private AudioType _getFruitAudioType;
 
     public event Action fruitPickup;
     public event Action trashPickup;
@@ -17,7 +23,7 @@ public class PlayerMove : MonoBehaviour
 
     private int m_currentIndex = 0;
     private int m_moveSpeed = 1;
-    private bool m_isCarryingTrash = false;
+  
 
 
     private void OnEnable()
@@ -44,6 +50,7 @@ public class PlayerMove : MonoBehaviour
        
         m_currentIndex += m_moveSpeed;
         m_currentIndex = Mathf.Clamp(m_currentIndex, 0, m_transforms.Length - 1);
+        _audioEventDispatcher.PlayAudio(_moveAudioType);
         UpdatePosition();
 
     }
@@ -52,10 +59,11 @@ public class PlayerMove : MonoBehaviour
     {
         m_currentIndex -= m_moveSpeed;
         m_currentIndex = Mathf.Clamp(m_currentIndex, 0, m_transforms.Length - 1);
+        _audioEventDispatcher.PlayAudio(_moveAudioType);
         UpdatePosition();
     }
 
-    public void MoveToDirection(int direction) //direction = -1 OU 1
+    public void MoveToDirection(int direction) 
     {
         m_currentIndex = m_currentIndex + m_moveSpeed * direction;
         m_currentIndex = Mathf.Clamp(m_currentIndex, 0, m_transforms.Length - 1);
@@ -89,12 +97,16 @@ public class PlayerMove : MonoBehaviour
         {
             Destroy(collision.gameObject); 
             Debug.Log("Fruit récupéré");
+            _trashAnimator.SetTrigger("Idle");
+            _trashAnimator.SetTrigger("Scored");
+            _audioEventDispatcher.PlayAudio(_getFruitAudioType);
             fruitPickup?.Invoke();
         }
         if (collision.CompareTag("Trash"))
         {
             Destroy(collision.gameObject); 
             Debug.Log("Trash récupéré");
+            _audioEventDispatcher.PlayAudio(_getTrashAudioType);
             trashPickup?.Invoke();
 
         }

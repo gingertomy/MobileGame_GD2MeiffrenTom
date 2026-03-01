@@ -7,7 +7,13 @@ public class Panier : MonoBehaviour
 
     public event Action fruitInside;
     public event Action trashInside;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animatorfruit;
+    [SerializeField] private Animator _animatorTrash;
+
+    [SerializeField] private AudioEventDispatcher _audioEventDispatcher;
+    [SerializeField] private AudioType _points;
+    [SerializeField] private AudioType _negative;
+
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,8 +22,9 @@ public class Panier : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Debug.Log("Fruit récupéré");
-            _animator.SetTrigger("Idle");
-            _animator.SetTrigger("Scored");
+            _animatorfruit.SetTrigger("Idle");
+            _animatorfruit.SetTrigger("Scored");
+            _audioEventDispatcher.PlayAudio(_points);
             fruitInside?.Invoke();
 
         }
@@ -25,6 +32,9 @@ public class Panier : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Debug.Log("Trash récupéré");
+            _animatorTrash.SetTrigger("Idle");
+            _animatorTrash.SetTrigger("Scored");
+            _audioEventDispatcher.PlayAudio(_negative);
             trashInside?.Invoke();
 
         }

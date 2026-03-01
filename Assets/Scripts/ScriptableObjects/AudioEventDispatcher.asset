@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c01e1514bafb84419b1aea1faadcdee, type: 3}
   m_Name: AudioEventDispatcher
   m_EditorClassIdentifier: Assembly-CSharp::AudioEventDispatcher
-  _audioClips: []
+  _audioClips:
+  - audioType: 1
+    audioClip: {fileID: 8300000, guid: 1ca5bf15459888d469c573863320c58d, type: 3}
+  - audioType: 2
+    audioClip: {fileID: 8300000, guid: cb0bbe272b098384e94a958141cbdb07, type: 3}
+  - audioType: 3
+    audioClip: {fileID: 8300000, guid: 67660e1886e06df4886c893221192856, type: 3}
+  - audioType: 4
+    audioClip: {fileID: 8300000, guid: 63e9a64147689924f9b73ff6aeb2d5ca, type: 3}
+  - audioType: 5
+    audioClip: {fileID: 8300000, guid: 0ad866ca1f9b0f9428c795c15ee15924, type: 3}
+  - audioType: 6
+    audioClip: {fileID: 8300000, guid: baeec5afe492f8c4081600952adb49e8, type: 3}
+  - audioType: 7
+    audioClip: {fileID: 8300000, guid: 835f207ba886d1942ac21624625ea193, type: 3}
+  - audioType: 8
+    audioClip: {fileID: 8300000, guid: 6d8be162e816d854e88f3e4a16dded25, type: 3}

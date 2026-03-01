@@ -2,8 +2,10 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 
 public class InputSwipePlayer : MonoBehaviour
@@ -32,8 +34,19 @@ public class InputSwipePlayer : MonoBehaviour
 
 
     }
+    
 
-    private void OnSwipe()
+private void OnEnable()
+{
+    EnhancedTouchSupport.Enable();
+}
+
+private void OnDisable()
+{
+    EnhancedTouchSupport.Disable();
+}
+
+private void OnSwipe()
     {
         Vector2 delta = endPosition - startPosition;
         delta = delta.normalized;
