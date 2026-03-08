@@ -36,6 +36,8 @@ public class LifeManager : MonoBehaviour
             if (panier != null)
                 panier.trashInside += LoseLife;
         }
+
+
     }
 
     private void OnDisable()

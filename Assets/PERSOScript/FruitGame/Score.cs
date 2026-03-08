@@ -5,5 +5,6 @@ using UnityEngine;
 public class Score : ScriptableObject
 {
    public int _bestScore = 0;
+public int _bestScoreFly = 0;
 
 }

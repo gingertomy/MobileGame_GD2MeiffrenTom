@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField] AudioSource _AudioSource;
     public void LoadNewLevel(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);
@@ -35,10 +36,18 @@ public class Menu : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0f;
+        if (_AudioSource != null)
+        {
+            _AudioSource.Pause();
+        }
     }
     public void Resume()
     {
         Time.timeScale = 1f;
+        if (_AudioSource != null)
+        {
+            _AudioSource.Play();
+        }
     }
 
 }

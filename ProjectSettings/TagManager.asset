@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Trash
   - Fruit
+  - Balloon
+  - Spike
   layers:
   - Default
   - TransparentFX
