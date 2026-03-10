@@ -37,38 +37,35 @@ public class CameraScroll : MonoBehaviour
 
     private void IncreaseSpeed(int score)
     {
-
+        
         if (score >= 25 && _lastScoreApplied < 25)
         {
-            _lastScoreApplied = 80;
-            verticalSpeed = 8f;
-
+            horizontalSpeed = 8f;
+            _lastScoreApplied = 25;
         }
         else if (score >= 20 && _lastScoreApplied < 20)
         {
-            _lastScoreApplied = 70;
-            verticalSpeed = 7f;
-
+            horizontalSpeed = 7f;
+            _lastScoreApplied = 20;
         }
         else if (score >= 15 && _lastScoreApplied < 15)
         {
-            _lastScoreApplied = 60;
-            verticalSpeed = 6f;
-
+            horizontalSpeed = 6f;
+            _lastScoreApplied = 15;
         }
         else if (score >= 10 && _lastScoreApplied < 10)
         {
-            _lastScoreApplied = 40;
-            verticalSpeed = 5f;
-
+            horizontalSpeed = 5f;
+            _lastScoreApplied = 10;
         }
         else if (score >= 5 && _lastScoreApplied < 5)
         {
-            _lastScoreApplied = 20;
-            verticalSpeed = 4f;
+            horizontalSpeed = 4f;
+            _lastScoreApplied = 5;
         }
-    }
 
+        Debug.Log("Vitesse actuelle : " + horizontalSpeed + " | Dernier palier : " + _lastScoreApplied);
+    }
     private void StopCamera()
     {
         horizontalSpeed = 0f;

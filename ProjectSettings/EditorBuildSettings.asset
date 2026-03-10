@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FruitGame.unity
     guid: 3ffb76cbbfcf9bd45bd0d81655f56c26
+  - enabled: 1
+    path: Assets/Scenes/RythmGame.unity
+    guid: 4ab8356953297314d9279301e61d4c39
+  - enabled: 1
+    path: Assets/Scenes/FlyGuyGame.unity
+    guid: 949be82cd7d073c439aa3284f2bca4a0
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: e5d22da4be90d6845b40999558f5a64b, type: 3}

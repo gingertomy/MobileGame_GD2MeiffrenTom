@@ -8,6 +8,8 @@ TagManager:
   - Fruit
   - Balloon
   - Spike
+  - Balloon2
+  - Balloon3
   layers:
   - Default
   - TransparentFX

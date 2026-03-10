@@ -12,11 +12,11 @@ public class PlayerWind : MonoBehaviour
     [SerializeField] private float _drag = 1.5f;         
 
 
-    [SerializeField] private float _gravityScale = 0.5f; 
+    [SerializeField] private float _gravity = 0.5f; 
 
     [SerializeField] private Rigidbody2D _rb;
 
-    public event Action BalloonHit;
+    public event Action<int> BalloonHit;
     public event Action SpikeHit;
 
     private void OnEnable() => EnhancedTouchSupport.Enable();
@@ -24,7 +24,7 @@ public class PlayerWind : MonoBehaviour
     private void Start()
     {
 
-        _rb.gravityScale = _gravityScale;
+        _rb.gravityScale = _gravity;
         _rb.linearDamping = _drag;
         _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
@@ -58,7 +58,17 @@ public class PlayerWind : MonoBehaviour
         if (collision.CompareTag("Balloon"))
         {
             collision.gameObject.SetActive(false);
-           BalloonHit?.Invoke();
+           BalloonHit?.Invoke(1);
+        }
+        else if (collision.CompareTag("Balloon2"))
+        {
+            collision.gameObject.SetActive(false);
+            BalloonHit?.Invoke(2);
+        }
+        else if (collision.CompareTag("Balloon3"))
+        {
+            collision.gameObject.SetActive(false);
+            BalloonHit?.Invoke(3);
         }
         else if (collision.CompareTag("Spike"))
         {

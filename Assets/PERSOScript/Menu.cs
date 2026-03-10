@@ -33,6 +33,13 @@ public class Menu : MonoBehaviour
 
 
     }
+
+    public void LoadLevel3()
+    {
+        LoadNewLevel(3);
+
+
+    }
     public void Pause()
     {
         Time.timeScale = 0f;

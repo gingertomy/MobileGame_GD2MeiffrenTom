@@ -11,7 +11,8 @@ public enum AudioType
     GameOver,
     LifeLoose,
     Acceleration,
-    Click
+    Click,
+    Pop
 
     
 }

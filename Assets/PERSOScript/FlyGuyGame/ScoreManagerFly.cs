@@ -1,5 +1,5 @@
-using TMPro;
 using System;
+using TMPro;
 using UnityEngine;
 
 public class ScoreLifeManagerFly : MonoBehaviour
@@ -7,17 +7,24 @@ public class ScoreLifeManagerFly : MonoBehaviour
 
     public int _actualscore;
     [SerializeField] private TMP_Text _scoreText;
+
     [SerializeField] private TMP_Text _bestScoreText;
     [SerializeField] private Score _score;
     [SerializeField] private PlayerWind _playerWind;
     [SerializeField] private Sea _sea;
     [SerializeField] private Podium _podium;
+    [SerializeField] private AudioEventDispatcher _audioEventDispatcher;
+    [SerializeField] private AudioType _pop;
+    [SerializeField] private AudioType _hit;
+    [SerializeField] private AudioType _gameOver;
 
     [SerializeField] private int _lives = 3;
     [SerializeField] private GameObject[] _lifeIcons;
 
     [SerializeField] private TMP_Text _finalScoreText;
+    [SerializeField] private TMP_Text _finalScoreText2;
     [SerializeField] private Canvas _gameOverCanvas;
+    [SerializeField] private Canvas _victoryCanvas;
 
     private bool _boost5;
     private bool _boost10;
@@ -45,31 +52,32 @@ public class ScoreLifeManagerFly : MonoBehaviour
         if (_podium != null)
             _podium.OnPodiumReached -= Won;
     }
-    private void AddScore()
+    private void AddScore(int score)
     {
-        _actualscore++;
+        _actualscore += score;
+        _audioEventDispatcher.PlayAudio(_pop);
 
         if (_actualscore >= 5 && !_boost5)
         {
             TriggerAcceleration(5);
             _boost5 = true;
         }
-        else if (_actualscore >= 10 && !_boost10)
+        if (_actualscore >= 10 && !_boost10)
         {
             TriggerAcceleration(10);
             _boost10 = true;
         }
-        else if (_actualscore >= 15 && !_boost15)
+        if (_actualscore >= 15 && !_boost15)
         {
             TriggerAcceleration(15);
             _boost15 = true;
         }
-        else if (_actualscore >= 20 && !_boost20)
+        if (_actualscore >= 20 && !_boost20)
         {
             TriggerAcceleration(20);
             _boost20 = true;
         }
-        else if (_actualscore >= 25 && !_boost25)
+        if (_actualscore >= 25 && !_boost25)
         {
             TriggerAcceleration(25);
             _boost25 = true;
@@ -111,6 +119,7 @@ public class ScoreLifeManagerFly : MonoBehaviour
         UpdateBestScore();
         UpdateScore();
         _gameOverCanvas.gameObject.SetActive(false);
+        _victoryCanvas.gameObject.SetActive(false);
         UpdateLives();
     }
 
@@ -121,7 +130,8 @@ public class ScoreLifeManagerFly : MonoBehaviour
         if (_lives > 0)
         {
             _lives--;
-            
+            _audioEventDispatcher.PlayAudio(_hit);
+
 
             UpdateLives();
         }
@@ -147,6 +157,7 @@ public class ScoreLifeManagerFly : MonoBehaviour
         Time.timeScale = 0;
         _gameOverCanvas.gameObject.SetActive(true);
         _finalScoreText.text = $"Score : {_actualscore.ToString()}";
+        _audioEventDispatcher.PlayAudio(_gameOver);
         Debug.Log("Game Over");
     }
 
@@ -154,6 +165,8 @@ public class ScoreLifeManagerFly : MonoBehaviour
     { 
         Debug.Log("You win !");
          Time.timeScale = 0;
+        _victoryCanvas.gameObject.SetActive(true);
+        _finalScoreText2.text = $"Score : {_actualscore.ToString()}";
     }
 }
 
