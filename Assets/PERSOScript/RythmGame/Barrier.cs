@@ -9,6 +9,8 @@ public class Barrier : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioEventDispatcher _audioEventDispatcher;
+    [SerializeField] private AudioType GameOver;
 
     private void Start()
     {
@@ -42,6 +44,7 @@ public class Barrier : MonoBehaviour
 
             if (_Slider.value <= 0)
             {
+                _audioEventDispatcher.PlayAudio(GameOver);
                 _gameOverScreen.SetActive(true);
                 _audioSource.Stop();
                 Time.timeScale = 0; 
@@ -61,6 +64,7 @@ public class Barrier : MonoBehaviour
             if (_Slider.value <= 0)
             {
                _gameOverScreen.SetActive(true);
+                _audioEventDispatcher.PlayAudio(GameOver);
                 _audioSource.Stop();
                 Time.timeScale = 0;
             }

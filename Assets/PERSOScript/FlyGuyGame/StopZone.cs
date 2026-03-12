@@ -7,6 +7,8 @@ public class StopZone : MonoBehaviour
     [SerializeField] private GameObject _victoryScreen;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private bool _isFlyGuyGame = false;
+    [SerializeField] private AudioEventDispatcher _EventDispatcher;
+    [SerializeField] private AudioType _victory;
 
     public event Action StopCam;
     public event Action Stars;
@@ -30,6 +32,7 @@ public class StopZone : MonoBehaviour
                 _audioSource.Stop();
             if (_victoryScreen != null)
                 _victoryScreen.SetActive(true);
+            _EventDispatcher.PlayAudio(_victory);
         }
 
     }

@@ -17,6 +17,9 @@ public class ScoreLifeManagerFly : MonoBehaviour
     [SerializeField] private AudioType _pop;
     [SerializeField] private AudioType _hit;
     [SerializeField] private AudioType _gameOver;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Sprite _death;
+    [SerializeField] private AudioSource _stop;
 
     [SerializeField] private int _lives = 3;
     [SerializeField] private GameObject[] _lifeIcons;
@@ -154,7 +157,9 @@ public class ScoreLifeManagerFly : MonoBehaviour
     }
     private void GameOver()
     {
+        _stop.Stop();
         Time.timeScale = 0;
+        _spriteRenderer.sprite = _death;
         _gameOverCanvas.gameObject.SetActive(true);
         _finalScoreText.text = $"Score : {_actualscore.ToString()}";
         _audioEventDispatcher.PlayAudio(_gameOver);

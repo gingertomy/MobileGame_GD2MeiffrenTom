@@ -50,16 +50,20 @@ public class PlayerSlide : MonoBehaviour
 
         if (touch.phase == TouchPhase.Moved)
         {
-            MoveLateral(touch.delta.x);
-
             Vector2 currentTouchPos = touch.screenPosition;
             float swipeVertical = _touchStartPos.y - currentTouchPos.y;
 
+        
             if (swipeVertical > _minSwipeDistance)
             {
                 _isCharging = true;
                 currentCharge = Mathf.Clamp01(swipeVertical / _maxChargeDistance);
                 UpdateLight(currentCharge);
+            }
+
+            if (!_isCharging)
+            {
+                MoveLateral(touch.delta.x);
             }
         }
 
@@ -79,16 +83,16 @@ public class PlayerSlide : MonoBehaviour
 
     private void ReleaseAttack()
     {
-        _isCharging = false; 
+        _isCharging = false;
 
         if (currentCharge >= 0.9f)
         {
-            StopAllCoroutines(); 
+            StopAllCoroutines();
             StartCoroutine(ChargedDuration());
         }
         else
         {
-            currentCharge = 0f; 
+            currentCharge = 0f;
             UpdateLight(0);
         }
     }
@@ -103,7 +107,7 @@ public class PlayerSlide : MonoBehaviour
 
         OnStateChanged?.Invoke(false);
         isCharged = false;
-        currentCharge = 0f; 
+        currentCharge = 0f;
 
         if (_chargeLight != null)
         {
@@ -114,6 +118,9 @@ public class PlayerSlide : MonoBehaviour
 
     private void MoveLateral(float deltaX)
     {
+        
+        if (_isCharging) return;
+
         float moveX = deltaX * _sensitivity * Time.deltaTime;
         Vector3 newPos = transform.position;
         newPos.x = Mathf.Clamp(newPos.x + moveX, -_maxX, _maxX);

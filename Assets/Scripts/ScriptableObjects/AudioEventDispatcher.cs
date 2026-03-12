@@ -12,9 +12,10 @@ public enum AudioType
     LifeLoose,
     Acceleration,
     Click,
-    Pop
+    Pop,
+    Victory
 
-    
+
 }
 
 [Serializable]
