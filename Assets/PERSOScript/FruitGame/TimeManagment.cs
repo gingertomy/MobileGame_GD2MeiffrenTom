@@ -68,7 +68,7 @@ public class TimeManagment : MonoBehaviour
     }
     private void SetTime(float newTime)
     {
-        Debug.Log($"Time accelerated to {newTime} seconds");
+        
         _timeStepDuration = newTime;
         StopTime();
         StartTime();

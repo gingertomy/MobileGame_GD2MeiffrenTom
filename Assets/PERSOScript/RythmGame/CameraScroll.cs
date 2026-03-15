@@ -64,7 +64,7 @@ public class CameraScroll : MonoBehaviour
             _lastScoreApplied = 5;
         }
 
-        Debug.Log("Vitesse actuelle : " + horizontalSpeed + " | Dernier palier : " + _lastScoreApplied);
+        
     }
     private void StopCamera()
     {

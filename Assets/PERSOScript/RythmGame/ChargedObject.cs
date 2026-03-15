@@ -25,15 +25,14 @@ public class ChargedObject : MonoBehaviour
         _playerIsCharged = status;
     }
 
-    private void OnTriggerStay2D(Collider2D collision) // "Stay" est plus sûr que "Enter" si on relâche en étant déjà dessus
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Double vérification : l'event OU la variable en direct
+   
             if (_playerIsCharged || (_playerSlide != null && _playerSlide.isCharged))
             {
-                Debug.Log("Impact réussi avec charge !");
-
+               
                 OnPickupCharged?.Invoke();
                 Animator.SetTrigger("Scored");
                 gameObject.SetActive(false);

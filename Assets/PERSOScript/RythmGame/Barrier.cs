@@ -19,7 +19,7 @@ public class Barrier : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision détectée avec : " + collision.gameObject.name);
+        
 
         if (collision.GetComponent<NormalObject>())
         {
