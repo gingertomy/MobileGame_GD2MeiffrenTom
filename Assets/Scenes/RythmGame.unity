@@ -6007,6 +6007,7 @@ MonoBehaviour:
   _AudioSource: {fileID: 1998899171}
   _texte: {fileID: 1996539090}
   _animator: {fileID: 1996539092}
+  _button: {fileID: 1330623018}
 --- !u!114 &1089507700
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,10 +7,12 @@ public class Decompte : MonoBehaviour
     [SerializeField] private AudioSource _AudioSource;
     [SerializeField] private TMP_Text _texte;
     [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _button;
 
     void Start()
     {
         Time.timeScale = 0f;
+        _button.SetActive(false);
         StartCoroutine(Delay());
     }
 
@@ -27,7 +29,7 @@ public class Decompte : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(1f);
         }
-
+        _button.SetActive(true);
         Time.timeScale = 1f;
         _AudioSource.Play();
     }

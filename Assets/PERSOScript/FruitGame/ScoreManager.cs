@@ -113,11 +113,11 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateBestScore()
     {
-        
-        if (_actualscore > _score._bestScore)
+        if (_actualscore > _score._bestScore) 
         {
             _score._bestScore = _actualscore;
         }
+        
         _bestScoreText.text = $"High-Score : {_score._bestScore}";
     }
 }
