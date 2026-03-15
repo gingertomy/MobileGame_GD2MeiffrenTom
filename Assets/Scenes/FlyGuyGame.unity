@@ -6453,6 +6453,7 @@ GameObject:
   - component: {fileID: 1089507694}
   - component: {fileID: 1089507698}
   - component: {fileID: 1089507699}
+  - component: {fileID: 1089507700}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -6523,6 +6524,19 @@ MonoBehaviour:
   _finalScoreText2: {fileID: 953877379}
   _gameOverCanvas: {fileID: 1549449278}
   _victoryCanvas: {fileID: 1219011287}
+--- !u!114 &1089507700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089507691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ae3f471bba7824bbc5d8351d4d5c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataPersist
+  _score: {fileID: 11400000, guid: ff15be546ddb13748a1fc98233de268b, type: 2}
 --- !u!1 &1105242608
 GameObject:
   m_ObjectHideFlags: 0
